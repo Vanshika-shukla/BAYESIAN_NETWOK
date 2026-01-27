@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smoking → LungCancer → XRay/Dyspnea Bayesian Network</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <div class="left-panel">
+    <div class="container">
+      <h2>Bayesian Network Calculator</h2>
+
+      <label>Probability Type:</label>
+      <select id="probType">
+        <option value="joint">Joint Probability</option>
+        <option value="marginal">Marginal Probability</option>
+        <option value="conditional">Conditional Probability</option>
+      </select>
+
+      <label>Variable 1:</label>
+      <select id="var1">
+        <option value="Smoking">Smoking</option>
+        <option value="LungCancer">LungCancer</option>
+        <option value="XRay">XRay</option>
+        <option value="Dyspnea">Dyspnea</option>
+      </select>
+
+      <label>Value 1:</label>
+      <select id="val1">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="var2Label">Variable 2:</label>
+      <select id="var2" style="display: none;">
+        <option value="Smoking">Smoking</option>
+        <option value="LungCancer">LungCancer</option>
+        <option value="XRay">XRay</option>
+        <option value="Dyspnea">Dyspnea</option>
+      </select>
+
+      <label id="val2Label">Value 2:</label>
+      <select id="val2" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="var3Label">Variable 3:</label>
+      <select id="var3" style="display: none;">
+        <option value="Smoking">Smoking</option>
+        <option value="LungCancer">LungCancer</option>
+        <option value="XRay">XRay</option>
+        <option value="Dyspnea">Dyspnea</option>
+      </select>
+
+      <label id="val3Label">Value 3:</label>
+      <select id="val3" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="condVar1Label">Condition Variable 1:</label>
+      <select id="condVar1" style="display: none;">
+        <option value="Smoking">Smoking</option>
+        <option value="LungCancer">LungCancer</option>
+        <option value="XRay">XRay</option>
+        <option value="Dyspnea">Dyspnea</option>
+      </select>
+
+      <label id="condVal1Label">Condition Value 1:</label>
+      <select id="condVal1" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <button onclick="calculate()">Calculate</button>
+
+      <div class="result" id="result">
+        Result will appear here...
+      </div>
+    </div>
+  </div>
+
+  <div class="table-section">
+    <h3>Probability Tables</h3>
+    <div id="tableContainer" class="table-wrapper">
+    </div>
+    
+    <div class="dag-container">
+      <h3>Bayesian Network DAG</h3>
+      <svg width="100%" height="100%" viewBox="0 0 500 350" style="min-height: 280px;">
+        <!-- Background -->
+        <defs>
+          <linearGradient id="dagBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a2850;stop-opacity:0.5" />
+            <stop offset="100%" style="stop-color:#0f1a35;stop-opacity:0.5" />
+          </linearGradient>
+        </defs>
+        <rect width="500" height="350" fill="url(#dagBg)"/>
+        
+        <!-- Nodes -->
+        <!-- Smoking (Top Center) -->
+        <circle cx="250" cy="50" r="40" fill="#667eff" stroke="#ffffff" stroke-width="3"/>
+        <text x="250" y="58" text-anchor="middle" fill="white" font-weight="900" font-size="15" dominant-baseline="middle">Smoking</text>
+        
+        <!-- LungCancer (Middle Center) -->
+        <circle cx="250" cy="175" r="40" fill="#5a6fef" stroke="#ffffff" stroke-width="3"/>
+        <text x="250" y="183" text-anchor="middle" fill="white" font-weight="900" font-size="15" dominant-baseline="middle">LungCancer</text>
+        
+        <!-- XRay (Bottom Left) -->
+        <circle cx="130" cy="300" r="40" fill="#4a5fdf" stroke="#ffffff" stroke-width="3"/>
+        <text x="130" y="308" text-anchor="middle" fill="white" font-weight="900" font-size="14" dominant-baseline="middle">XRay</text>
+        
+        <!-- Dyspnea (Bottom Right) -->
+        <circle cx="370" cy="300" r="40" fill="#4a5fdf" stroke="#ffffff" stroke-width="3"/>
+        <text x="370" y="308" text-anchor="middle" fill="white" font-weight="900" font-size="14" dominant-baseline="middle">Dyspnea</text>
+        
+        <!-- Edges with arrows -->
+        <defs>
+          <marker id="arrowhead" markerWidth="15" markerHeight="15" refX="12" refY="6" orient="auto">
+            <polygon points="0 0, 15 6, 0 12" fill="#a8c5ff" stroke="none"/>
+          </marker>
+          <marker id="arrowhead-glow" markerWidth="15" markerHeight="15" refX="12" refY="6" orient="auto">
+            <polygon points="0 0, 15 6, 0 12" fill="#667eff" stroke="none"/>
+          </marker>
+        </defs>
+        
+        <!-- Smoking → LungCancer -->
+        <line x1="250" y1="95" x2="250" y2="130" stroke="#667eff" stroke-width="4" marker-end="url(#arrowhead)" opacity="0.6"/>
+        <line x1="250" y1="95" x2="250" y2="130" stroke="#a8c5ff" stroke-width="2" marker-end="url(#arrowhead-glow)"/>
+        <text x="260" y="115" fill="#a8c5ff" font-size="12" font-weight="bold">→</text>
+        
+        <!-- LungCancer → XRay -->
+        <line x1="215" y1="210" x2="165" y2="265" stroke="#667eff" stroke-width="4" marker-end="url(#arrowhead)" opacity="0.6"/>
+        <line x1="215" y1="210" x2="165" y2="265" stroke="#a8c5ff" stroke-width="2" marker-end="url(#arrowhead-glow)"/>
+        <text x="175" y="240" fill="#a8c5ff" font-size="12" font-weight="bold">→</text>
+        
+        <!-- LungCancer → Dyspnea -->
+        <line x1="285" y1="210" x2="335" y2="265" stroke="#667eff" stroke-width="4" marker-end="url(#arrowhead)" opacity="0.6"/>
+        <line x1="285" y1="210" x2="335" y2="265" stroke="#a8c5ff" stroke-width="2" marker-end="url(#arrowhead-glow)"/>
+        <text x="325" y="240" fill="#a8c5ff" font-size="12" font-weight="bold">→</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
