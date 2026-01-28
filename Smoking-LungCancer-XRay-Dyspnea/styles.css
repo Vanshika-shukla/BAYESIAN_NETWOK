@@ -14,8 +14,10 @@ body {
   height: 100vh;
   padding: 20px;
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 126, 255, 0.4) transparent;
 }
 
 /* Subtle noise overlay for texture */
@@ -34,6 +36,23 @@ body::before {
 body > div {
   position: relative;
   z-index: 2;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgba(107, 126, 255, 0.4);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 126, 255, 0.6);
 }
 
 .main-wrapper {
