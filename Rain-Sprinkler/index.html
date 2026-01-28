@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bayesian Network Probability Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <div class="left-panel">
+    <div class="container">
+      <h2>Bayesian Network Calculator</h2>
+
+      <label>Probability Type:</label>
+      <select id="probType">
+        <option value="joint">Joint Probability</option>
+        <option value="marginal">Marginal Probability</option>
+        <option value="conditional">Conditional Probability</option>
+      </select>
+
+      <label>Variable 1:</label>
+      <select id="var1">
+        <option value="Rain">Rain</option>
+        <option value="Sprinkler">Sprinkler</option>
+        <option value="WetGrass">WetGrass</option>
+      </select>
+
+      <label>Value 1:</label>
+      <select id="val1">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="var2Label">Variable 2:</label>
+      <select id="var2" style="display: none;">
+        <option value="Rain">Rain</option>
+        <option value="Sprinkler">Sprinkler</option>
+        <option value="WetGrass">WetGrass</option>
+      </select>
+
+      <label id="val2Label">Value 2:</label>
+      <select id="val2" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="var3Label">Variable 3:</label>
+      <select id="var3" style="display: none;">
+        <option value="WetGrass">WetGrass</option>
+        <option value="Rain">Rain</option>
+        <option value="Sprinkler">Sprinkler</option>
+      </select>
+
+      <label id="val3Label">Value 3:</label>
+      <select id="val3" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label id="condVar1Label">Condition Variable 1:</label>
+      <select id="condVar1" style="display: none;">
+        <option value="WetGrass">WetGrass</option>
+        <option value="Rain">Rain</option>
+        <option value="Sprinkler">Sprinkler</option>
+      </select>
+
+      <label id="condVal1Label">Condition Value 1:</label>
+      <select id="condVal1" style="display: none;">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <button onclick="calculate()">Calculate</button>
+
+      <div class="result" id="result">
+        Result will appear here...
+      </div>
+    </div>
+  </div>
+
+  <div class="table-section">
+    <h3>Probability Tables</h3>
+    <div id="tableContainer" class="table-wrapper">
+    </div>
+    
+    <div class="dag-container">
+      <h3>Bayesian Network DAG</h3>
+      <svg width="300" height="160" viewBox="0 0 400 250">
+        <!-- Nodes -->
+        <circle cx="200" cy="40" r="30" fill="#6b7eff" stroke="#ffffff" stroke-width="2"/>
+        <text x="200" y="48" text-anchor="middle" fill="white" font-weight="bold" font-size="13" dominant-baseline="middle">Rain</text>
+        
+        <circle cx="100" cy="160" r="30" fill="#5a6fef" stroke="#ffffff" stroke-width="2"/>
+        <text x="100" y="168" text-anchor="middle" fill="white" font-weight="bold" font-size="12" dominant-baseline="middle">Sprinkler</text>
+        
+        <circle cx="300" cy="160" r="30" fill="#4a5fdf" stroke="#ffffff" stroke-width="2"/>
+        <text x="300" y="168" text-anchor="middle" fill="white" font-weight="bold" font-size="12" dominant-baseline="middle">WetGrass</text>
+        
+        <!-- Edges with arrows -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 10 3, 0 6" fill="#6b7eff"/>
+          </marker>
+        </defs>
+        
+        <line x1="190" y1="70" x2="120" y2="135" stroke="#6b7eff" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+        <line x1="210" y1="70" x2="280" y2="135" stroke="#6b7eff" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+        <line x1="130" y1="160" x2="270" y2="160" stroke="#6b7eff" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
