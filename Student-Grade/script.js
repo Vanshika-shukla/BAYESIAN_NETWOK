@@ -5,8 +5,10 @@
 // Attendance (Good, Poor)
 // Understanding (Good, Poor)
 // Grade (High, Low)
+// vanshika
 
 // ---- Priors ----
+// vanshika
 const P_PreviousPerformance = {
   "Good": 0.6,
   "Poor": 0.4
@@ -26,6 +28,7 @@ const P_Attendance = {
 // P(Understanding = Good | P, S, A)
 function P_Understanding_given_PSA(P, S, A, U) {
   let pGood;
+  // vanshika
 
   if (P === "Good" && S === "High" && A === "Good") {
     pGood = 0.95;
@@ -46,6 +49,7 @@ function P_Understanding_given_PSA(P, S, A, U) {
   } else {
     pGood = 0.5;
   }
+  // vanshika
 
   if (U === "Good") return pGood;
   if (U === "Poor") return 1 - pGood;
@@ -56,6 +60,7 @@ function P_Understanding_given_PSA(P, S, A, U) {
 // P(Grade = High | U, A)
 function P_Grade_given_UA(U, A, G) {
   let pHigh;
+  // vanshika
 
   if (U === "Good" && A === "Good") {
     pHigh = 0.97;
@@ -68,6 +73,7 @@ function P_Grade_given_UA(U, A, G) {
   } else {
     pHigh = 0.5;
   }
+  // vanshika
 
   if (G === "High") return pHigh;
   if (G === "Low") return 1 - pHigh;
@@ -75,6 +81,7 @@ function P_Grade_given_UA(U, A, G) {
 }
 
 // ---- Helper Domains ----
+// vanshika
 const Prev_vals = ["Good", "Poor"];
 const Study_vals = ["High", "Low"];
 const Att_vals = ["Good", "Poor"];
@@ -82,6 +89,7 @@ const Und_vals = ["Good", "Poor"];
 const Grade_vals = ["High", "Low"];
 
 // ---- Joint Probability ----
+// vanshika
 function jointProbability(PreviousPerformance, StudyHours, Attendance, Understanding, Grade) {
   return P_PreviousPerformance[PreviousPerformance] *
          P_StudyHours[StudyHours] *
@@ -91,6 +99,7 @@ function jointProbability(PreviousPerformance, StudyHours, Attendance, Understan
 }
 
 // ---- General Marginal P(Var = val) ----
+// vanshika
 function calculateMarginalProbability(variable, value) {
   let prob = 0;
 
@@ -119,6 +128,7 @@ function calculateMarginalProbability(variable, value) {
 }
 
 // ---- General Conditional P(Event = e | Cond = c) ----
+// vanshika
 function conditionalProbability(eventVar, eventVal, condVar, condVal) {
   let numerator = 0;
   let denominator = 0;
@@ -159,6 +169,7 @@ function conditionalProbability(eventVar, eventVal, condVar, condVal) {
 }
 
 // ---- Joint P(Var1=v1, Var2=v2, Var3=v3) ----
+// vanshika
 function calculateJointProbability3(var1, val1, var2, val2, var3, val3) {
   let result = 0;
 
@@ -201,6 +212,7 @@ function calculateJointProbability3(var1, val1, var2, val2, var3, val3) {
 }
 
 // ---- Conditional P(Var1=v1, Var2=v2 | CondVar=CondVal) ----
+// vanshika
 function conditionalProbability3(var1, val1, var2, val2, condVar1, condVal1) {
   let numerator = 0;
   let denominator = 0;
