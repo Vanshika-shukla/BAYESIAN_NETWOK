@@ -422,3 +422,63 @@ tbody tr:last-child td {
   }
 }
 
+
+/* ===== Tab bar ===== */
+.tab-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.tab-btn {
+  flex: 1;
+  margin-top: 0;
+  padding: 9px 12px;
+  background: rgba(242, 199, 199, 0.3);
+  color: var(--sg-text-main);
+  border: 1.5px solid rgba(225, 190, 198, 0.9);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 183, 197, 0.4);
+  transform: none;
+  box-shadow: none;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--sg-pink-bright) 0%, var(--sg-pink-light) 100%);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(160, 110, 130, 0.35);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Evidence rows remove button override */
+.evidence-row button {
+  width: 32px;
+  padding: 6px;
+  margin-top: 0;
+  font-size: 12px;
+  background: linear-gradient(135deg, #f2c7c7, #ffb7c5);
+  color: #fff;
+  border: none;
+  flex-shrink: 0;
+}
+
+.evidence-row button:hover {
+  transform: none;
+  box-shadow: none;
+}
